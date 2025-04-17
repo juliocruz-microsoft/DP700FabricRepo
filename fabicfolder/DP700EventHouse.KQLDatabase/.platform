@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLDatabase",
+    "displayName": "DP700EventHouse",
+    "description": "DP700EventHouse"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "6f051847-c7e3-8179-459f-f689ed9e5d0a"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "e22eeb69-cfcd-4459-bbe1-f0abb7654bc8",
+        "clusterUri": "",
+        "type": "Fabric",
+        "databaseItemId": "6f051847-c7e3-8179-459f-f689ed9e5d0a",
+        "databaseItemName": "DP700EventHouse"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "2558427e-e09d-440a-94b4-e0d9e64c9f24",
+        "content": "//***********************************************************************************************************\n// Here are two articles to help you get started with KQL:\n// KQL reference guide - https://aka.ms/KQLguide\n// SQL - KQL conversions - https://aka.ms/sqlcheatsheet\n//***********************************************************************************************************\n\n// Use \"take\" to view a sample number of records in the table and check the data.\nYOUR_TABLE_HERE\n| take 100\n\n// See how many records are in the table.\nYOUR_TABLE_HERE\n| count\n\n// This query returns the number of ingestions per hour in the given table.\nYOUR_TABLE_HERE\n| summarize IngestionCount = count() by bin(ingestion_time(), 1h)\n\n",
+        "title": "Tab",
+        "dataSourceId": "e22eeb69-cfcd-4459-bbe1-f0abb7654bc8"
+      },
+      {
+        "id": "d53baf37-2451-41da-a596-797028e56e72",
+        "content": "let dp700time = -1h;\nlet neighb = \"Chelsea\";\nlet timetable =\nbikes\n| where ingestion_time() between (now(dp700time) .. now());\ntimetable\n| where Neighbourhood == neighb\n| order by Street asc\n| project BikepointID, Street, Neighbourhood \n| summarize BikesxStreet = count() by Street\n| render piechart  ",
+        "title": "",
+        "dataSourceId": "e22eeb69-cfcd-4459-bbe1-f0abb7654bc8"
+      },
+      {
+        "id": "7df36357-027e-47b3-9ff8-b8f85e263015",
+        "content": "bikes\n| summarize TotalBikes = sum(tolong(SUM_No_Bikes)) by Window_End_Time, Street\n| sort by Window_End_Time desc , Street asc",
+        "title": "",
+        "dataSourceId": "e22eeb69-cfcd-4459-bbe1-f0abb7654bc8"
+      },
+      {
+        "id": "caabc329-2cc1-4474-bdc2-5a6ad4aaf857",
+        "content": "// Use 'take' to view a sample number of records in the table and check the data.\n['bikes-by-street']\n| take 100\n",
+        "title": "",
+        "dataSourceId": "e22eeb69-cfcd-4459-bbe1-f0abb7654bc8"
+      },
+      {
+        "id": "3ec5d67d-12bb-4dec-88f2-8eeaf34db4e9",
+        "content": "bikes\n    | where ingestion_time() between (ago(30min) .. now())\n    | summarize latest_observation = arg_max(ingestion_time(), *) by Neighbourhood\n    | project Neighbourhood, latest_observation, No_Bikes, No_Empty_Docks\n    | order by Neighbourhood asc",
+        "title": "",
+        "dataSourceId": "e22eeb69-cfcd-4459-bbe1-f0abb7654bc8"
+      },
+      {
+        "id": "798d3419-551f-4ac3-8c6b-e967c6ffbecf",
+        "content": "bikes\n    | where ingestion_time() between (ago(30min) .. now())\n    | summarize latest_observation = arg_max(ingestion_time(), *) by Neighbourhood\n    | project Neighbourhood, latest_observation, Latitude, Longitude, No_Bikes\n    | order by Neighbourhood asc",
+        "title": "",
+        "dataSourceId": "e22eeb69-cfcd-4459-bbe1-f0abb7654bc8"
+      },
+      {
+        "id": "f3b64ac2-20ea-4282-9e31-4276725995ea",
+        "content": "// Use 'take' to view a sample number of records in the table and check the data.\nbikes\n| take 100\n\n-- View a sample of 100 records in the table.\nselect top 100 * from bikes\n\n",
+        "title": "",
+        "dataSourceId": "e22eeb69-cfcd-4459-bbe1-f0abb7654bc8"
+      }
+    ]
+  }
+}

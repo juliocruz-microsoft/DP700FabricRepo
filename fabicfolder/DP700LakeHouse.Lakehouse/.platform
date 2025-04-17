@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "DP700LakeHouse"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f0a258d3-60de-a0f2-426a-8f7db0f1f2cc"
+  }
+}
