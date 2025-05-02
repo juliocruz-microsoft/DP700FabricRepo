@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "dp700dhwsemanticmodel"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c5d1d1c6-2132-b056-4f5f-302737cae4ae"
+  }
+}

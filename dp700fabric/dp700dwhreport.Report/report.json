@@ -1,0 +1,60 @@
+{
+  "config": "{\"version\":\"5.59\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":\"5.64\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU10",
+            "path": "BaseThemes/CY24SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "6738749728294d04c2e0",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"1cf52b9d493e9da4075a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10.402246144729602,\"y\":0,\"z\":0,\"width\":484.2823482935226,\"height\":476.19171240317735,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"barChart\",\"projections\":{\"Category\":[{\"queryRef\":\"DimProduct.Category\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(FactSalesOrder.SalesTotal)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimProduct\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FactSalesOrder\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Category\"},\"Name\":\"DimProduct.Category\",\"NativeReferenceName\":\"Category\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SalesTotal\"}},\"Function\":0},\"Name\":\"Sum(FactSalesOrder.SalesTotal)\",\"NativeReferenceName\":\"Sum of SalesTotal\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SalesTotal\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 476.19,
+          "width": 484.28,
+          "x": 10.40,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"6137da20760e6a2558e6\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10.402246144729602,\"y\":485.4381534207148,\"z\":2,\"width\":1269.0740296570116,\"height\":234.62844082001214,\"tabOrder\":2}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Category\":[{\"queryRef\":\"DimDate.DayOfWeek\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(FactSalesOrder.SalesTotal)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimDate\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FactSalesOrder\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"DayOfWeek\"},\"Name\":\"DimDate.DayOfWeek\",\"NativeReferenceName\":\"Sum of DayOfWeek\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SalesTotal\"}},\"Function\":0},\"Name\":\"Sum(FactSalesOrder.SalesTotal)\",\"NativeReferenceName\":\"Sum of SalesTotal\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SalesTotal\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 234.63,
+          "width": 1269.07,
+          "x": 10.40,
+          "y": 485.44,
+          "z": 2.00
+        },
+        {
+          "config": "{\"name\":\"b706d3d9c2b27e95e905\",\"layouts\":[{\"id\":0,\"position\":{\"x\":558.253876433822,\"y\":16.18127178069049,\"z\":1,\"width\":656.4973122451571,\"height\":443.8291688417964,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"DimCustomer.FirstName\"},{\"queryRef\":\"Sum(FactSalesOrder.SalesTotal)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FactSalesOrder\",\"Type\":0},{\"Name\":\"d\",\"Entity\":\"DimCustomer\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"FirstName\"},\"Name\":\"DimCustomer.FirstName\",\"NativeReferenceName\":\"FirstName\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SalesTotal\"}},\"Function\":0},\"Name\":\"Sum(FactSalesOrder.SalesTotal)\",\"NativeReferenceName\":\"Sum of SalesTotal\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"SalesTotal\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 443.83,
+          "width": 656.50,
+          "x": 558.25,
+          "y": 16.18,
+          "z": 1.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

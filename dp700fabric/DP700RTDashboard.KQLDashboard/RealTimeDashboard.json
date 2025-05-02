@@ -1,0 +1,147 @@
+{
+  "schema_version": "60",
+  "tiles": [
+    {
+      "id": "0ec0927c-c2c0-4299-a684-558c12843d66",
+      "title": "Bikes",
+      "visualType": "column",
+      "pageId": "d13a4f15-e90b-4a11-8603-d8bab1af9b1d",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 9,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "43c0f2e5-3288-40f6-883b-7d8dae0e8961"
+      },
+      "visualOptions": {
+        "xColumn": "BikepointID",
+        "multipleYAxes": {
+          "additional": [],
+          "showMultiplePanels": false,
+          "base": {
+            "horizontalLines": [],
+            "yAxisScale": "linear",
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "columns": [],
+            "label": "",
+            "id": "-1"
+          }
+        },
+        "yColumns": [
+          "No_Bikes"
+        ],
+        "seriesColumns": null,
+        "anomalyColumns": null,
+        "map__latitudeColumn": "BikepointID",
+        "map__longitudeColumn": "No_Bikes",
+        "selectedDataOnLoad": {
+          "all": true,
+          "limit": 10
+        }
+      }
+    },
+    {
+      "id": "c15ca0ac-4d8f-4935-bba8-14e190678cc2",
+      "title": "New tile",
+      "visualType": "bar",
+      "pageId": "d13a4f15-e90b-4a11-8603-d8bab1af9b1d",
+      "layout": {
+        "x": 9,
+        "y": 0,
+        "width": 9,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "4382d2b3-e888-466b-8c53-8b2a7d814085"
+      },
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xColumn": null,
+        "yColumns": null,
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilter": [],
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "drillthrough": []
+      }
+    }
+  ],
+  "baseQueries": [],
+  "parameters": [
+    {
+      "kind": "duration",
+      "id": "a1f7b010-1c40-4d50-b2a5-71f2a9deb16f",
+      "displayName": "Time range",
+      "description": "",
+      "beginVariableName": "_startTime",
+      "endVariableName": "_endTime",
+      "defaultValue": {
+        "kind": "dynamic",
+        "count": 1,
+        "unit": "hours"
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    }
+  ],
+  "dataSources": [
+    {
+      "id": "93e8ddb2-4925-4e02-91b1-23e9d9302ce0",
+      "kind": "kusto-trident",
+      "scopeId": "kusto-trident",
+      "clusterUri": "",
+      "database": "56020e49-fd53-a10a-4030-ab60465beefc",
+      "name": "dp700eventhouse",
+      "workspace": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "pages": [
+    {
+      "name": "Page 1",
+      "id": "d13a4f15-e90b-4a11-8603-d8bab1af9b1d"
+    }
+  ],
+  "queries": [
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "93e8ddb2-4925-4e02-91b1-23e9d9302ce0"
+      },
+      "text": "AggregatedData\r\n| sort by BikepointID\r\n| render columnchart with (ycolumns=No_Bikes,xcolumn=BikepointID)",
+      "id": "43c0f2e5-3288-40f6-883b-7d8dae0e8961",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "93e8ddb2-4925-4e02-91b1-23e9d9302ce0"
+      },
+      "text": "bikes\n| summarize count() by Neighbourhood\n|render barchart ",
+      "id": "4382d2b3-e888-466b-8c53-8b2a7d814085",
+      "usedVariables": []
+    }
+  ]
+}
