@@ -1,0 +1,571 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "DelimitedTextSource",
+            "formatSettings": {
+              "type": "DelimitedTextReadSettings",
+              "skipLineCount": 0
+            },
+            "storeSettings": {
+              "type": "HttpReadSettings",
+              "requestMethod": "GET"
+            },
+            "datasetSettings": {
+              "type": "DelimitedText",
+              "typeProperties": {
+                "location": {
+                  "type": "HttpServerLocation"
+                },
+                "columnDelimiter": ",",
+                "rowDelimiter": "\n",
+                "quoteChar": "\"",
+                "escapeChar": "\\",
+                "firstRowAsHeader": true
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "eb8ef2ee-07bb-4dcb-a397-fb5a92b4fa5f"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "DelimitedTextSink",
+            "formatSettings": {
+              "type": "DelimitedTextWriteSettings",
+              "fileExtension": ".txt"
+            },
+            "storeSettings": {
+              "type": "LakehouseWriteSettings"
+            },
+            "datasetSettings": {
+              "type": "DelimitedText",
+              "typeProperties": {
+                "location": {
+                  "type": "LakehouseLocation",
+                  "folderPath": "bronzedata",
+                  "fileName": "sales.csv"
+                },
+                "columnDelimiter": ",",
+                "rowDelimiter": "\n",
+                "quoteChar": "\"",
+                "escapeChar": "\\",
+                "firstRowAsHeader": true
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "DP700Lakehouse",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "7d7275e8-4574-ad2a-481d-fb66a02606ef",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Files"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Copy_Salescsv",
+        "dependsOn": [
+          {
+            "activity": "Delete_salescsv",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "AzureSqlSource",
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00",
+            "datasetSettings": {
+              "type": "AzureSqlTable",
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "DimEmployee",
+                "database": "AdventureWorksDW2020"
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "7dcad752-729e-4d05-9c59-bb4e1d4d3bc3"
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "LakehouseTableSink",
+            "tableActionOption": "OverwriteSchema",
+            "partitionOption": "None",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "table": "DimEmployees"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "DP700Lakehouse",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "7d7275e8-4574-ad2a-481d-fb66a02606ef",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "EmployeeKey",
+                  "type": "Int32",
+                  "physicalType": "int"
+                },
+                "sink": {
+                  "name": "EmployeeKey",
+                  "physicalType": "integer"
+                }
+              },
+              {
+                "source": {
+                  "name": "ParentEmployeeKey",
+                  "type": "Int32",
+                  "physicalType": "int"
+                },
+                "sink": {
+                  "name": "ParentEmployeeKey",
+                  "physicalType": "integer"
+                }
+              },
+              {
+                "source": {
+                  "name": "EmployeeNationalIDAlternateKey",
+                  "type": "Int32",
+                  "physicalType": "int"
+                },
+                "sink": {
+                  "name": "EmployeeNationalIDAlternateKey",
+                  "physicalType": "integer"
+                }
+              },
+              {
+                "source": {
+                  "name": "ParentEmployeeNationalIDAlternateKey",
+                  "type": "Int32",
+                  "physicalType": "int"
+                },
+                "sink": {
+                  "name": "ParentEmployeeNationalIDAlternateKey",
+                  "physicalType": "integer"
+                }
+              },
+              {
+                "source": {
+                  "name": "FirstName",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "50"
+                },
+                "sink": {
+                  "name": "FirstName",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "LastName",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "50"
+                },
+                "sink": {
+                  "name": "LastName",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "MiddleName",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "50"
+                },
+                "sink": {
+                  "name": "MiddleName",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "NameStyle",
+                  "type": "Boolean",
+                  "physicalType": "bit"
+                },
+                "sink": {
+                  "name": "NameStyle",
+                  "physicalType": "boolean"
+                }
+              },
+              {
+                "source": {
+                  "name": "Title",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "50"
+                },
+                "sink": {
+                  "name": "Title",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "HireDate",
+                  "type": "DateTime",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "HireDate",
+                  "physicalType": "date"
+                }
+              },
+              {
+                "source": {
+                  "name": "BirthDate",
+                  "type": "DateTime",
+                  "physicalType": "date"
+                },
+                "sink": {
+                  "name": "BirthDate",
+                  "physicalType": "date"
+                }
+              },
+              {
+                "source": {
+                  "name": "LoginID",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "256"
+                },
+                "sink": {
+                  "name": "LoginID",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "EmailAddress",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "100"
+                },
+                "sink": {
+                  "name": "EmailAddress",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "Phone",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "25"
+                },
+                "sink": {
+                  "name": "Phone",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "MaritalStatus",
+                  "type": "String",
+                  "physicalType": "nchar",
+                  "length": "1"
+                },
+                "sink": {
+                  "name": "MaritalStatus",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "EmergencyContactName",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "50"
+                },
+                "sink": {
+                  "name": "EmergencyContactName",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "EmergencyContactPhone",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "25"
+                },
+                "sink": {
+                  "name": "EmergencyContactPhone",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "SalariedFlag",
+                  "type": "Boolean",
+                  "physicalType": "bit"
+                },
+                "sink": {
+                  "name": "SalariedFlag",
+                  "physicalType": "boolean"
+                }
+              },
+              {
+                "source": {
+                  "name": "Gender",
+                  "type": "String",
+                  "physicalType": "nchar",
+                  "length": "1"
+                },
+                "sink": {
+                  "name": "Gender",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "PayFrequency",
+                  "type": "Byte",
+                  "physicalType": "tinyint"
+                },
+                "sink": {
+                  "name": "PayFrequency",
+                  "physicalType": "short"
+                }
+              },
+              {
+                "source": {
+                  "name": "BaseRate",
+                  "type": "Decimal",
+                  "physicalType": "money",
+                  "scale": 4,
+                  "precision": 19
+                },
+                "sink": {
+                  "name": "BaseRate",
+                  "physicalType": "decimal",
+                  "scale": 4,
+                  "precision": 19
+                }
+              },
+              {
+                "source": {
+                  "name": "VacationHours",
+                  "type": "Int16",
+                  "physicalType": "smallint"
+                },
+                "sink": {
+                  "name": "VacationHours",
+                  "physicalType": "short"
+                }
+              },
+              {
+                "source": {
+                  "name": "SickLeaveHours",
+                  "type": "Int16",
+                  "physicalType": "smallint"
+                },
+                "sink": {
+                  "name": "SickLeaveHours",
+                  "physicalType": "short"
+                }
+              },
+              {
+                "source": {
+                  "name": "CurrentFlag",
+                  "type": "Boolean",
+                  "physicalType": "bit"
+                },
+                "sink": {
+                  "name": "CurrentFlag",
+                  "physicalType": "boolean"
+                }
+              },
+              {
+                "source": {
+                  "name": "SalesPersonFlag",
+                  "type": "Boolean",
+                  "physicalType": "bit"
+                },
+                "sink": {
+                  "name": "SalesPersonFlag",
+                  "physicalType": "boolean"
+                }
+              },
+              {
+                "source": {
+                  "name": "DepartmentName",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "50"
+                },
+                "sink": {
+                  "name": "DepartmentName",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "EmployeePhoto",
+                  "type": "Byte[]",
+                  "physicalType": "varbinary",
+                  "length": "MAX"
+                },
+                "sink": {
+                  "name": "EmployeePhoto",
+                  "physicalType": "binary"
+                }
+              },
+              {
+                "source": {
+                  "name": "Position",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "100"
+                },
+                "sink": {
+                  "name": "Position",
+                  "physicalType": "string"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Copy_Employees",
+        "dependsOn": []
+      },
+      {
+        "type": "Delete",
+        "typeProperties": {
+          "enableLogging": false,
+          "datasetSettings": {
+            "type": "Binary",
+            "typeProperties": {
+              "location": {
+                "type": "LakehouseLocation",
+                "folderPath": "bronzedata"
+              }
+            },
+            "linkedService": {
+              "name": "DP700Lakehouse",
+              "properties": {
+                "type": "Lakehouse",
+                "typeProperties": {
+                  "artifactId": "7d7275e8-4574-ad2a-481d-fb66a02606ef",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000",
+                  "rootFolder": "Files"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          },
+          "storeSettings": {
+            "type": "LakehouseReadSettings",
+            "recursive": true,
+            "enablePartitionDiscovery": false
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Delete_salescsv",
+        "dependsOn": []
+      },
+      {
+        "type": "RefreshDataflow",
+        "typeProperties": {
+          "dataflowId": "053dd7fd-5139-492f-9331-01452e6f0f7c",
+          "workspaceId": "ee3a5fc4-745c-4a5c-9b6e-434382b18a89",
+          "notifyOption": "NoNotification",
+          "dataflowType": "Dataflow-Gen2"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Dataflow1",
+        "dependsOn": [
+          {
+            "activity": "Copy_Salescsv",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          },
+          {
+            "activity": "Copy_Employees",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
