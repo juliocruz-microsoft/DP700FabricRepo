@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLDashboard",
+    "displayName": "DP700RTDashboard",
+    "description": "DP700RTDashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "9d4fe4d6-1b44-8eea-4d3e-5d2d127e9185"
+  }
+}

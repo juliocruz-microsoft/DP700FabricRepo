@@ -1,0 +1,43 @@
+table Dim_Customer
+	lineageTag: bd268c93-9133-4bda-a500-aada960bfb0e
+	sourceLineageTag: [Sales].[Dim_Customer]
+
+	column CustomerID
+		dataType: string
+		sourceProviderType: varchar(255)
+		lineageTag: cae07aea-4b76-4796-a726-4a272e15a817
+		sourceLineageTag: CustomerID
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		sourceProviderType: varchar(255)
+		lineageTag: 79e8b347-85ab-46d4-ae60-9d5bfcb0ae36
+		sourceLineageTag: CustomerName
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmailAddress
+		dataType: string
+		sourceProviderType: varchar(255)
+		lineageTag: 4ef2c8d6-6555-41bc-9400-9ad7c0c99b8b
+		sourceLineageTag: EmailAddress
+		summarizeBy: none
+		sourceColumn: EmailAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Customer = entity
+		mode: directLake
+		source
+			entityName: Dim_Customer
+			schemaName: Sales
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+
