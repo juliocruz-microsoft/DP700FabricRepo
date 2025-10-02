@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "dp700dwhreport"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "70e9279a-e7d8-8c8a-41e5-d210935068b3"
+  }
+}

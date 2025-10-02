@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Eventstream",
+    "displayName": "dp700eventstream"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5f24b26d-0e6c-b5b9-4b5e-8239095362d0"
+  }
+}
