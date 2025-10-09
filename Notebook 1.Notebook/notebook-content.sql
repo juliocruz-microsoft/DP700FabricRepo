@@ -268,3 +268,14 @@ drop table external_default
 -- META   "language": "sparksql",
 -- META   "language_group": "synapse_pyspark"
 -- META }
+
+-- CELL ********************
+
+SELECT *  from external_default
+
+-- METADATA ********************
+
+-- META {
+-- META   "language": "sparksql",
+-- META   "language_group": "synapse_pyspark"
+-- META }
