@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Warehouse",
+    "displayName": "JCDP700Warehouse"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e8c7842c-5aac-91ea-44af-d085af94ff63"
+  }
+}

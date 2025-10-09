@@ -1,0 +1,31 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "P700Dataflow",
+  "queryGroups": [],
+  "documentLocale": "pt-BR",
+  "queriesMetadata": {
+    "DimEmployee": {
+      "queryId": "34a49e62-cc08-426c-800f-048108704534",
+      "queryName": "DimEmployee"
+    },
+    "DimEmployee_DataDestination": {
+      "queryId": "8453d673-7d78-4806-a032-a6ca5cb2ab18",
+      "queryName": "DimEmployee_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "jcdp300sqlserver.database.windows.net",
+      "kind": "SQL",
+      "connectionId": "{\"ClusterId\":\"c7ea1d04-1a4a-4321-9b19-679299d6ee49\",\"DatasourceId\":\"1c6b7a7f-822d-4611-b6c6-91455edc2027\"}"
+    },
+    {
+      "path": "Warehouse",
+      "kind": "Warehouse",
+      "connectionId": "{\"ClusterId\":\"c7ea1d04-1a4a-4321-9b19-679299d6ee49\",\"DatasourceId\":\"778ce572-f764-4525-b9a8-2bbe408c9ea9\"}"
+    }
+  ]
+}
