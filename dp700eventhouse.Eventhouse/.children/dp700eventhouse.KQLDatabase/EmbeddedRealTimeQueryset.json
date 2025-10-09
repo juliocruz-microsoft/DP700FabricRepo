@@ -1,0 +1,34 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "c3f020dd-f980-45e9-a923-3b63fe4f7302",
+        "clusterUri": "https://trd-jvzb82t89dce19hayt.z0.kusto.fabric.microsoft.com",
+        "type": "Fabric",
+        "databaseItemId": "50575d91-143e-411d-b1c7-2cc2831e3668",
+        "databaseItemName": "dp700eventhouse"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "fea1834d-412d-425a-b409-3551ef3c9eff",
+        "content": "select * from iotrawdata",
+        "title": "Tab",
+        "dataSourceId": "c3f020dd-f980-45e9-a923-3b63fe4f7302"
+      },
+      {
+        "id": "c9a400a2-2b9f-4be8-8b45-42642b56c056",
+        "content": "let temp = 15;\niotrawdata\n| where temperature > temp+5\n| project-keep temperature,PartitionId\n| summarize count() by PartitionId\n| order by PartitionId asc \n| render columnchart   \n",
+        "title": "",
+        "dataSourceId": "c3f020dd-f980-45e9-a923-3b63fe4f7302"
+      },
+      {
+        "id": "e30bdb93-3430-4d93-beac-77c01f80af7e",
+        "content": "Temp30mais",
+        "title": "",
+        "dataSourceId": "c3f020dd-f980-45e9-a923-3b63fe4f7302"
+      }
+    ]
+  }
+}

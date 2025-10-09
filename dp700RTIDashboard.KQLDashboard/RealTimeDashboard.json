@@ -1,0 +1,210 @@
+{
+  "schema_version": 63,
+  "tiles": [
+    {
+      "id": "9ccc2bfd-dd38-452b-a31b-0dc52977d09d",
+      "title": "Rawdata",
+      "visualType": "column",
+      "pageId": "e31e0168-4d64-4abb-827d-70e51e93279d",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 9,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "66b28167-9907-4e48-8c72-9ca636412a4a"
+      },
+      "visualOptions": {
+        "xColumn": null,
+        "multipleYAxes": {
+          "additional": [],
+          "showMultiplePanels": false,
+          "base": {
+            "horizontalLines": [],
+            "yAxisScale": "linear",
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "columns": [],
+            "label": "",
+            "id": "-1"
+          }
+        },
+        "yColumns": null,
+        "seriesColumns": null,
+        "anomalyColumns": null,
+        "map__longitudeColumn": null,
+        "map__latitudeColumn": null,
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilter": [],
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "drillthrough": [],
+        "selectedDataOnLoad": {
+          "all": true,
+          "limit": 10
+        }
+      }
+    },
+    {
+      "id": "a353d547-e382-41e3-a545-91af287021e7",
+      "title": "Novo bloco",
+      "visualType": "bar",
+      "pageId": "217cff79-7593-4b90-8a06-610456a0ba55",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 9,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "31a41289-9288-4adc-8ec2-20466bdf9bcd"
+      },
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xColumn": null,
+        "yColumns": null,
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilter": [],
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "drillthrough": []
+      }
+    },
+    {
+      "id": "04dcd8b5-c8dc-4460-9472-b3803c711fc6",
+      "title": "Novo bloco",
+      "visualType": "timechart",
+      "pageId": "e31e0168-4d64-4abb-827d-70e51e93279d",
+      "layout": {
+        "x": 9,
+        "y": 0,
+        "width": 9,
+        "height": 7
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "92bf3f92-2312-4d11-ba96-9efe164fb2c2"
+      },
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xColumn": null,
+        "yColumns": null,
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilter": [],
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "drillthrough": []
+      }
+    }
+  ],
+  "baseQueries": [],
+  "parameters": [
+    {
+      "kind": "duration",
+      "id": "7e93d1bc-039e-4ae2-9621-8a4dc81dc93a",
+      "displayName": "Período",
+      "description": "",
+      "beginVariableName": "_startTime",
+      "endVariableName": "_endTime",
+      "defaultValue": {
+        "kind": "dynamic",
+        "count": 1,
+        "unit": "hours"
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    }
+  ],
+  "dataSources": [
+    {
+      "id": "799c03b1-2355-46b3-bc39-5c2cb6fc18fe",
+      "kind": "kusto-trident",
+      "scopeId": "kusto-trident",
+      "clusterUri": "",
+      "database": "831e3668-2cc2-b1c7-411d-143e50575d91",
+      "name": "dp700eventhouse",
+      "workspace": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "pages": [
+    {
+      "name": "Temp20mais",
+      "id": "e31e0168-4d64-4abb-827d-70e51e93279d"
+    },
+    {
+      "name": "Temp25mais",
+      "id": "217cff79-7593-4b90-8a06-610456a0ba55"
+    }
+  ],
+  "queries": [
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "799c03b1-2355-46b3-bc39-5c2cb6fc18fe"
+      },
+      "text": "let temp = 15;\niotrawdata\n| where temperature > temp+5\n| project-keep temperature,PartitionId\n| summarize count() by PartitionId\n| order by PartitionId asc ",
+      "id": "66b28167-9907-4e48-8c72-9ca636412a4a",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "799c03b1-2355-46b3-bc39-5c2cb6fc18fe"
+      },
+      "text": "let temp = 20;\niotrawdata\n| where temperature > temp+5\n| project-keep temperature,PartitionId\n| summarize count() by PartitionId\n| order by PartitionId asc \n| render columnchart   ",
+      "id": "31a41289-9288-4adc-8ec2-20466bdf9bcd",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "799c03b1-2355-46b3-bc39-5c2cb6fc18fe"
+      },
+      "text": "Temp30mais\n| render linechart ",
+      "id": "92bf3f92-2312-4d11-ba96-9efe164fb2c2",
+      "usedVariables": []
+    }
+  ]
+}

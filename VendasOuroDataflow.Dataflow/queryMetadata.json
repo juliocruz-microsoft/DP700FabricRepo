@@ -1,0 +1,31 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {},
+  "name": "VendasOuroDataflow",
+  "queryGroups": [],
+  "documentLocale": "pt-BR",
+  "queriesMetadata": {
+    "vendasprata": {
+      "queryId": "e45b3fe6-494d-47a2-adac-7d321b4a00c7",
+      "queryName": "vendasprata"
+    },
+    "vendasprata_DataDestination": {
+      "queryId": "dc05b199-da28-488e-bcb8-d95592775dea",
+      "queryName": "vendasprata_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"c7ea1d04-1a4a-4321-9b19-679299d6ee49\",\"DatasourceId\":\"2962761c-3ed6-4f79-a6d1-274a98031280\"}"
+    },
+    {
+      "path": "Warehouse",
+      "kind": "Warehouse",
+      "connectionId": "{\"ClusterId\":\"c7ea1d04-1a4a-4321-9b19-679299d6ee49\",\"DatasourceId\":\"778ce572-f764-4525-b9a8-2bbe408c9ea9\"}"
+    }
+  ]
+}
